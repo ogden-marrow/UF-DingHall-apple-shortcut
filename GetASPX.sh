@@ -1,10 +1,11 @@
 #!/bin/bash
-
+curl https://www.bsd.ufl.edu/dining/Hours/RegularHours.aspx >> hoursn.txt
 H = './hours.txt'
-N = './'
-function compare{
-    local 512C = shasum -a 512 H
-    local 512N = shasum -a 512 N
-    if 
-}
+N = './hoursn.txt'
 
+Cc = shasum -a 512 H
+Nn = shasum -a 512 N
+if [ $Cc == $Nn]
+then
+    rm -f N
+fi
