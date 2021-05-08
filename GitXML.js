@@ -14,20 +14,23 @@ let HTime = {
 };
 
 let Store = {
-    Monday:[],
-    Tuesday:[],
-    Wednesday:[],
-    Thursday:[],
-    Friday:[],
-    Saturday:[],
-    Sunday:[]
+    Monday: [],
+    Tuesday: [],
+    Wednesday: [],
+    Thursday: [],
+    Friday: [],
+    Saturday: [],
+    Sunday: []
 };
 
-function build (RawTxt) {
+function build(RawTxt) {
     let GCDC = new Store();
     let WRU = new Store();
     let SRU = new Store();
-    return GCDC,WRU,SRU;
+    return GCDC, WRU, SRU;
+}
+function TxtParse(TxT) {
+
 }
 
 function GetTime() {
@@ -36,13 +39,13 @@ function GetTime() {
     let Hours = d.getUTCHours();
     let Minutes = d.getUTCMinutes();
     let Day = d.getDay();
-    console.log(TimeFormatter(Hours,offset,Minutes,Day));
+    console.log(TimeFormatter(Hours, offset, Minutes, Day));
 }
 
-function TimeFormatter(Hours,offset,Minutes,Day) {
+function TimeFormatter(Hours, offset, Minutes, Day) {
     Hours = Hours - offset;
-    let days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-    Day = Day-1;
+    let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    Day = Day - 1;
     Day = days[Day];
     if (Hours > 12) {
         Hours = Hours - 12;
