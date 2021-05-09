@@ -30,7 +30,8 @@ function build(RawTxt) {
     return GCDC, WRU, SRU;
 }
 function TxtParse(TxT) {
-
+    Txt = "big string"
+    Txt.search();
 }
 
 function GetTime() {
@@ -44,8 +45,8 @@ function GetTime() {
 
 function TimeFormatter(Hours, offset, Minutes, Day) {
     Hours = Hours - offset;
-    let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-    Day = Day - 1;
+    let M = 'AM';
+    let days = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     Day = days[Day];
     if (Hours > 12) {
         Hours = Hours - 12;
