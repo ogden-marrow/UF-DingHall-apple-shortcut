@@ -30,8 +30,7 @@ function build(RawTxt) {
     return GCDC, WRU, SRU;
 }
 function TxtParse(TxT) {
-    Txt = "big string"
-    Txt.search();
+    console.log(TxT.search());
 }
 
 function GetTime() {
