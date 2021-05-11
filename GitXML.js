@@ -6,10 +6,10 @@
 //     });
 
 // ha ha lol
-fetch('hours.txt')
+fetch('content.aspx')
     .then(response => response.text())
     .then(data => {
-       TxtParse(data);
+        TxtParse(data);
     });
 let HTime = {
     hours: 24,
@@ -35,23 +35,37 @@ function build(RawTxt) {
     let SRU = new Store();
     return GCDC, WRU, SRU;
 }
-function TxtParse(TxT) {
-    let log = ('tty').search();
-    console.log(TxT.search("Gator&nbsp;Corner&nbsp;Dining&nbsp;Center&nbsp;-&nbsp;&nbsp;Lunch&nbsp;@&nbsp;Corner"));
+function TxtParse(TxT,Time) {
+    let GCDCB = "Gator&nbsp;Corner&nbsp;Dining&nbsp;Center&nbsp;-&nbsp;Dinner&nbsp;@&nbsp;Corner&nbsp;of&nbsp;Gale&nbsp;Lemerand&nbsp;Dr.&nbsp;and&nbsp;Stadium&nbsp;Rd.";
+    let GCDCL = "Gator&nbsp;Corner&nbsp;Dining&nbsp;Center&nbsp;-&nbsp;&nbsp;Lunch";
+    let GCDCD = "Gator&nbsp;Corner&nbsp;Dining&nbsp;Center&nbsp;-&nbsp;Dinner";
+    let tr = "tr";
+    let StartN = TxT.search(GCDCB)+GCDCB.length;
+    let EndN = TxT.substring(StartN).search(tr) + StartN;
+    let hours_string = strClean(TxT.substring(StartN,EndN));
+    console.log(hours_string)
 }
-
+function strClean(str) {
+    str = str.replace(/([^0-9:#])/gm, "");
+    str = str.replace(/(#....)/gm,"");
+    str = str.replace(/(.4:)/gm, "4:");
+    return str;
+}
 function GetTime() {
     let d = new Date();
-    let offset = (d.getTimezoneOffset() / 60);
-    let Hours = d.getUTCHours();
+    let Hours = d.getHours();
     let Minutes = d.getUTCMinutes();
     let Day = d.getDay();
-    console.log(TimeFormatter(Hours, offset, Minutes, Day));
+    console.log(TimeFormatter(Hours, Minutes, Day));
 }
 
-function TimeFormatter(Hours, offset, Minutes, Day) {
+function TimeFormatter(Hours, Minutes, Day) {
     let M = 'AM';
-    let days = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    if (Hours > 12){
+        Hours = Hours - 12;
+        M = 'PM';
+    }
     Day = days[Day];
     HTime.ampm = M;
     HTime.hours = Hours;
