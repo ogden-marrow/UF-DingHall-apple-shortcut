@@ -1,10 +1,16 @@
 /*jshint esversion: 6 */
-fetch('https://www.bsd.ufl.edu/dining/Hours/RegularHours.aspx')
+// fetch('https://www.bsd.ufl.edu/dining/Hours/RegularHours.aspx')
+//     .then(response => response.text())
+//     .then(data => {
+//         TxtParse(data);
+//     });
+
+// ha ha lol
+fetch('hours.txt')
     .then(response => response.text())
     .then(data => {
-
+       TxtParse(data);
     });
-
 let HTime = {
     hours: 24,
     minutes: 59,
@@ -30,7 +36,8 @@ function build(RawTxt) {
     return GCDC, WRU, SRU;
 }
 function TxtParse(TxT) {
-    console.log(TxT.search());
+    let log = ('tty').search();
+    console.log(TxT.search("Gator&nbsp;Corner&nbsp;Dining&nbsp;Center&nbsp;-&nbsp;&nbsp;Lunch&nbsp;@&nbsp;Corner"));
 }
 
 function GetTime() {
@@ -43,14 +50,9 @@ function GetTime() {
 }
 
 function TimeFormatter(Hours, offset, Minutes, Day) {
-    Hours = Hours - offset;
     let M = 'AM';
     let days = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     Day = days[Day];
-    if (Hours > 12) {
-        Hours = Hours - 12;
-        M = 'PM';
-    }
     HTime.ampm = M;
     HTime.hours = Hours;
     HTime.minutes = Minutes;
