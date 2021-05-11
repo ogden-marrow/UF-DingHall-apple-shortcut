@@ -6,7 +6,7 @@
 //     });
 
 // ha ha lol
-fetch('content.aspx')
+fetch('hours.txt')
     .then(response => response.text())
     .then(data => {
         TxtParse(data);
@@ -35,19 +35,25 @@ function build(RawTxt) {
     let SRU = new Store();
     return GCDC, WRU, SRU;
 }
-function TxtParse(TxT,Time) {
+function TxtParse(TxT, Time) {
     let GCDCB = "Gator&nbsp;Corner&nbsp;Dining&nbsp;Center&nbsp;-&nbsp;Dinner&nbsp;@&nbsp;Corner&nbsp;of&nbsp;Gale&nbsp;Lemerand&nbsp;Dr.&nbsp;and&nbsp;Stadium&nbsp;Rd.";
     let GCDCL = "Gator&nbsp;Corner&nbsp;Dining&nbsp;Center&nbsp;-&nbsp;&nbsp;Lunch";
     let GCDCD = "Gator&nbsp;Corner&nbsp;Dining&nbsp;Center&nbsp;-&nbsp;Dinner";
     let tr = "tr";
-    let StartN = TxT.search(GCDCB)+GCDCB.length;
+    let StartN = TxT.search(GCDCB) + GCDCB.length;
     let EndN = TxT.substring(StartN).search(tr) + StartN;
-    let hours_string = strClean(TxT.substring(StartN,EndN));
-    console.log(hours_string)
+    let hours_string = strClean(TxT.substring(StartN, EndN));
+    console.log(hours_string);
 }
+
+function hoursExtract (str) {
+    
+    return str
+}
+
 function strClean(str) {
-    str = str.replace(/([^0-9:#])/gm, "");
-    str = str.replace(/(#....)/gm,"");
+    str = str.replace(/([^0-9:#]|CLOSED)/gm, "");
+    str = str.replace(/(#....)/gm, "");
     str = str.replace(/(.4:)/gm, "4:");
     return str;
 }
@@ -62,7 +68,7 @@ function GetTime() {
 function TimeFormatter(Hours, Minutes, Day) {
     let M = 'AM';
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    if (Hours > 12){
+    if (Hours > 12) {
         Hours = Hours - 12;
         M = 'PM';
     }
