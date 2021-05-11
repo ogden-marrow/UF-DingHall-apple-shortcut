@@ -9,7 +9,7 @@
 fetch('hours.txt')
     .then(response => response.text())
     .then(data => {
-        TxtParse(data);
+        console.log(TxtParse(data));
     });
 let HTime = {
     hours: 24,
@@ -43,12 +43,19 @@ function TxtParse(TxT, Time) {
     let StartN = TxT.search(GCDCB) + GCDCB.length;
     let EndN = TxT.substring(StartN).search(tr) + StartN;
     let hours_string = strClean(TxT.substring(StartN, EndN));
-    console.log(hours_string);
+    return hours_string;
 }
 
-function hoursExtract (str) {
-    
-    return str
+function hoursExtract(str) {
+    let store = new Store(); 
+    store.Monday = [];
+    store.Tuesday = [];
+    store.Wednesday = [];
+    store.Thursday = [];
+    store.Friday = [];
+    store.Saturday = [];
+    store.Sunday = [];
+    return store;
 }
 
 function strClean(str) {
