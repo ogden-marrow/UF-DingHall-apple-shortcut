@@ -14,3 +14,11 @@
     /* 4 final */
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
  }
+
+ body{
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+     color: #855050;
+     /* color: #505050; */
+     background-color: #02051f;
+     font-size: xx-large;
+ }
