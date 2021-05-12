@@ -11,6 +11,7 @@ fetch('hours.txt')
     .then(data => {
         console.log(hoursExtract(TxtParse(data)));
     });
+
 let HTime = {
     hours: 24,
     minutes: 59,
@@ -60,13 +61,13 @@ function TxtParse(TxT, Time) {
 
 function hoursExtract(str) {
     let store = new Store();
-    store.Monday = [StringToNum(str)[0],StringToNum(str)[1]];
-    store.Tuesday = [StringToNum(str)[0],StringToNum(str)[1]];
-    store.Wednesday = [StringToNum(str)[0],StringToNum(str)[1]];
-    store.Thursday = [StringToNum(str)[0],StringToNum(str)[1]];
-    store.Friday = [StringToNum(str)[0],StringToNum(str)[1]];
-    store.Saturday = [StringToNum(str)[0],StringToNum(str)[1]];
-    store.Sunday = [StringToNum(str)[0],StringToNum(str)[1]];
+    store.Monday = [StringToNum(str)[0], StringToNum(str)[1]];
+    store.Tuesday = [StringToNum(str)[0], StringToNum(str)[1]];
+    store.Wednesday = [StringToNum(str)[0], StringToNum(str)[1]];
+    store.Thursday = [StringToNum(str)[0], StringToNum(str)[1]];
+    store.Friday = [StringToNum(str)[0], StringToNum(str)[1]];
+    store.Saturday = [StringToNum(str)[0], StringToNum(str)[1]];
+    store.Sunday = [StringToNum(str)[0], StringToNum(str)[1]];
     return store;
 }
 
