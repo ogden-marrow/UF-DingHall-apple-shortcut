@@ -9,7 +9,7 @@
 fetch('hours.txt')
     .then(response => response.text())
     .then(data => {
-        console.log(TxtParse(data));
+        console.log(hoursExtract(TxtParse(data)));
     });
 let HTime = {
     hours: 24,
@@ -19,15 +19,27 @@ let HTime = {
 
 };
 
-let Store = {
-    Monday: [],
-    Tuesday: [],
-    Wednesday: [],
-    Thursday: [],
-    Friday: [],
-    Saturday: [],
-    Sunday: []
-};
+// let Store = {
+//     Monday: [],
+//     Tuesday: [],
+//     Wednesday: [],
+//     Thursday: [],
+//     Friday: [],
+//     Saturday: [],
+//     Sunday: []
+// };
+
+class Store {
+    constructor() {
+        this.Monday = [];
+        this.Tuesday = [];
+        this.Wednesday = [];
+        this.Thursday = [];
+        this.Friday = [];
+        this.Saturday = [];
+        this.Sunday = [];
+    }
+}
 
 function build(RawTxt) {
     let GCDC = new Store();
@@ -47,15 +59,20 @@ function TxtParse(TxT, Time) {
 }
 
 function hoursExtract(str) {
-    let store = new Store(); 
-    store.Monday = [];
-    store.Tuesday = [];
-    store.Wednesday = [];
-    store.Thursday = [];
-    store.Friday = [];
-    store.Saturday = [];
-    store.Sunday = [];
+    let store = new Store();
+    store.Monday = [StringToNum(str)[0],StringToNum(str)[1]];
+    store.Tuesday = [StringToNum(str)[0],StringToNum(str)[1]];
+    store.Wednesday = [StringToNum(str)[0],StringToNum(str)[1]];
+    store.Thursday = [StringToNum(str)[0],StringToNum(str)[1]];
+    store.Friday = [StringToNum(str)[0],StringToNum(str)[1]];
+    store.Saturday = [StringToNum(str)[0],StringToNum(str)[1]];
+    store.Sunday = [StringToNum(str)[0],StringToNum(str)[1]];
     return store;
+}
+
+function StringToNum(str) {
+    let NumArray = [parseInt(str[str.search(/([0-9]:)/gm)]), parseInt(str[str.search(/(:)/gm) + 1] + str[str.search(/(:)/gm) + 2])];
+    return NumArray;
 }
 
 function strClean(str) {
